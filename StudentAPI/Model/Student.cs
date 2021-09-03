@@ -20,7 +20,7 @@ namespace StudentAPI.Model
         [Column(TypeName = "nvarchar(15)")]
 
         public string DateOfBirth { get; set; }
-
+        public string DateofBirth { get; internal set; }
         [Column(TypeName = "nvarchar(7)")]
 
         public string Gender { get; set; }
