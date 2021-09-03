@@ -22,14 +22,14 @@ namespace StudentAPI.Controllers
             _dbContext = dbContext;
         }
         // GET: api/<StudentController> GET ALL STUDENTS
-        [HttpGet]
+        [HttpGet("GetAllStudents")]
         public async Task<IEnumerable<Student>> GetStudents()
         {
             return await _dbContext.Students.ToListAsync();
         }
 
         //GET STUDENT BY ID
-        [HttpGet("{id}")]
+        [HttpGet("GetStudentById")]
 
         public async Task<ActionResult<Student>> GetStudentById(int id)
         {
@@ -39,7 +39,7 @@ namespace StudentAPI.Controllers
         }
  
         // POST api/<StudentController> ADD STUDENT
-        [HttpPost]
+        [HttpPost("AddStudent")]
         public async Task<ActionResult<Student>> AddStudent(Student student)    
         {
             await _dbContext.Students.AddAsync(student);
@@ -49,7 +49,7 @@ namespace StudentAPI.Controllers
         }
 
         // PUT api/<StudentController>/5 UPDATE STUDENT RECORD by id
-        [HttpPut("{id}")]
+        [HttpPut("UpdateStudentById")]
         
         public IActionResult Put(int id, [FromBody] Student student)
         {
@@ -62,7 +62,7 @@ namespace StudentAPI.Controllers
             {
                 entity.StudentId = student.StudentId;
                 entity.StudentName = student.StudentName;
-                entity.DateofBirth = student.DateOfBirth;
+                entity.DateOfBirth = student.DateOfBirth;
                 entity.Gender = student.Gender;
                 _dbContext.SaveChanges();
                 return Ok(_dbContext.Students);
@@ -71,7 +71,7 @@ namespace StudentAPI.Controllers
         }
 
         // DELETE api/<StudentController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteStudentById")]
         public IActionResult  Delete(int id)
         {
             var student = _dbContext.Students.Find(id);
